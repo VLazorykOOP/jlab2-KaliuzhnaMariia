@@ -99,38 +99,4 @@ public class Date {
         LocalDate ldate2 = date2.toLocalDate();
         return (int) ChronoUnit.DAYS.between(ldate1, ldate2);
     }
-
-    public static void main(String[] args) {
-        Scanner in = new Scanner(System.in);
-        System.out.print("Enter the first data (year.month.day): ");
-        String inputDate1 = in.nextLine();
-        Date date1 = new Date(inputDate1);
-        System.out.print("Enter the second data (year.month.day): ");
-        String inputDate2 = in.nextLine();
-        Date date2 = new Date(inputDate2);
-
-        System.out.println("Date 1: " + date1);
-        System.out.println("Date 2: " + date2);
-
-        System.out.println("Is Date 1 before Date 2: " + date1.isBefore(date1, date2));
-        System.out.println("Is Date 1 after Date 2: " + date1.isAfter(date1, date2));
-        System.out.println("Is Date 1 equal to Date 2: " + date1.isEqual(date1, date2));
-
-        System.out.println("Enter the number of days: ");
-        int d = in.nextInt();
-        Date addate1 = date1.addDays(d);
-        Date addate2 = date2.addDays(d);
-        System.out.println("Date 1 after adding: " + addate1);
-        System.out.println("Date 2 after adding: " + addate2);
-        Date mindate1 = date1.minusDays(d);
-        Date mindate2 = date2.minusDays(d);
-        System.out.println("Date 1 after minus: " + mindate1);
-        System.out.println("Date 2 after minus: " + mindate2);
-
-        System.out.println("Is year of Date 1 leap: " + date1.isLeap(date1));
-        System.out.println("Is year of Date 2 leap: " + date2.isLeap(date2));
-
-        int db = date1.daysBetween(date1, date2);
-        System.out.println("Amount of days between Date 1 and Date 2: " + db);
-    }
 }

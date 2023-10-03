@@ -7,7 +7,7 @@ public class QuickSort {
     public QuickSort(int[] array) {
         this.array = array;
     }
-    private static int[] generateRandom(int n){
+    public static int[] generateRandom(int n){
         int[] arr = new int[n];
         Random rnd = new Random();
         for (int i = 0; i < n; i++){
@@ -38,16 +38,5 @@ public class QuickSort {
         arr[i + 1] = arr[end];
         arr[end] = temp;
         return i + 1;
-    }
-
-    public static void main(String[] args) {
-        Scanner in = new Scanner(System.in);
-        System.out.print("Enter the n: ");
-        int n = in.nextInt();
-        int[] arr = generateRandom(n);
-        System.out.println("Original array: " + Arrays.toString(arr));
-        QuickSort quickSort = new QuickSort(arr);
-        quickSort(arr, 0, n-1);
-        System.out.println("Sorted array: " + Arrays.toString(arr));
     }
 }
