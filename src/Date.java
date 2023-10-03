@@ -6,11 +6,6 @@ public class Date {
     private byte month;
     private byte day;
 //Constructors
-    public Date(){
-        year = 0;
-        month = 0;
-        day = 0;
-    }
     public Date(String dates){
         String[]parts = dates.split("\\.");
         if(parts.length == 3){
@@ -20,6 +15,11 @@ public class Date {
         }else{
             System.out.println("Invalid date");
         }
+    }
+    public Date(int year, int month, int day){
+        this.year = (byte) year;
+        this.month = (byte) month;
+        this.day = (byte) day;
     }
     public Date(LocalDate ld){
         this.year = (byte) ld.getYear();
@@ -55,34 +55,49 @@ public class Date {
     }
 
     //Operations
-    public void addDate(int d){
+    public Date addDays(int d){
         LocalDate ld = toLocalDate().plusDays(d);
-        this.year = (byte) ld.getYear();
-        this.month = (byte) ld.getMonthValue();
-        this.day = (byte) ld.getDayOfMonth();
+        return new Date((byte) ld.getYear(), (byte) ld.getMonthValue(), (byte) ld.getDayOfMonth());
     }
-    public void minusDate(int d) {
+    public Date minusDays(int d) {
         LocalDate ld = toLocalDate().minusDays(d);
-        this.year = (byte) ld.getYear();
-        this.month = (byte) ld.getMonthValue();
-        this.day = (byte) ld.getDayOfMonth();
+        return new Date((byte) ld.getYear(), (byte) ld.getMonthValue(), (byte) ld.getDayOfMonth());
     }
-    public boolean isLeap(){
-        return (year % 4 == 0 && year % 100 != 0) || (year % 400 == 0);
-    }
-    public int compareDate(Date other){
-        if (year != other.year){
-            return Integer.compare(year, other.year);
+    public boolean isLeap(Date date){
+        LocalDate ldate = date.toLocalDate();
+        if (ldate.isLeapYear()){
+            return true;
         }
-        if(month != other.month) {
-            return Integer.compare(month, other.month);
-        }
-            return Integer.compare(day, other.day);
+        return false;
     }
-    public int daysBetween(Date other) {
-        LocalDate thisDate = toLocalDate();
-        LocalDate otherDate = other.toLocalDate();
-        return (int) ChronoUnit.DAYS.between(thisDate, otherDate);
+    public boolean isAfter(Date date1, Date date2){
+        LocalDate ldate1 = date1.toLocalDate();
+        LocalDate ldate2 = date2.toLocalDate();
+        if (ldate1.isAfter(ldate2)) {
+            return true;
+        }
+        return false;
+    }
+    public boolean isBefore(Date date1, Date date2){
+        LocalDate ldate1 = date1.toLocalDate();
+        LocalDate ldate2 = date2.toLocalDate();
+        if (ldate1.isBefore(ldate2)) {
+            return true;
+        }
+        return false;
+    }
+    public boolean isEqual(Date date1, Date date2){
+        LocalDate ldate1 = date1.toLocalDate();
+        LocalDate ldate2 = date2.toLocalDate();
+        if (ldate1.isEqual(ldate2)) {
+            return true;
+        }
+        return false;
+    }
+    public int daysBetween(Date date1, Date date2) {
+        LocalDate ldate1 = date1.toLocalDate();
+        LocalDate ldate2 = date2.toLocalDate();
+        return (int) ChronoUnit.DAYS.between(ldate1, ldate2);
     }
 
     public static void main(String[] args) {
@@ -93,40 +108,29 @@ public class Date {
         System.out.print("Enter the second data (year.month.day): ");
         String inputDate2 = in.nextLine();
         Date date2 = new Date(inputDate2);
-        Date initialDate1 = new Date(date1.toString());
-        Date initialDate2 = new Date(date2.toString());
 
         System.out.println("Date 1: " + date1);
         System.out.println("Date 2: " + date2);
 
-        int res = date1.compareDate(date2);
-        if (res < 0){
-            System.out.println("Date 1 before Date 2");
-        }else if(res > 0){
-            System.out.println("Date 1 after Date 2");
-        } else{
-            System.out.println("Date 1 equal to Date 2");
-        }
+        System.out.println("Is Date 1 before Date 2: " + date1.isBefore(date1, date2));
+        System.out.println("Is Date 1 after Date 2: " + date1.isAfter(date1, date2));
+        System.out.println("Is Date 1 equal to Date 2: " + date1.isEqual(date1, date2));
 
         System.out.println("Enter the number of days: ");
         int d = in.nextInt();
-        date1.addDate(d);
-        date2.addDate(d);
-        System.out.println("Date 1 after adding: " + date1);
-        System.out.println("Date 2 after adding: " + date2);
-        date1 = initialDate1;
-        date2 = initialDate2;
-        date1.minusDate(d);
-        date2.minusDate(d);
-        System.out.println("Date 1 after minus: " + date1);
-        System.out.println("Date 2 after minus: " + date2);
-        date1 = initialDate1;
-        date2 = initialDate2;
+        Date addate1 = date1.addDays(d);
+        Date addate2 = date2.addDays(d);
+        System.out.println("Date 1 after adding: " + addate1);
+        System.out.println("Date 2 after adding: " + addate2);
+        Date mindate1 = date1.minusDays(d);
+        Date mindate2 = date2.minusDays(d);
+        System.out.println("Date 1 after minus: " + mindate1);
+        System.out.println("Date 2 after minus: " + mindate2);
 
-        System.out.println("Is year of Date 1 leap: " + date1.isLeap());
-        System.out.println("Is year of Date 2 leap: " + date2.isLeap());
+        System.out.println("Is year of Date 1 leap: " + date1.isLeap(date1));
+        System.out.println("Is year of Date 2 leap: " + date2.isLeap(date2));
 
-        int db = date1.daysBetween(date2);
+        int db = date1.daysBetween(date1, date2);
         System.out.println("Amount of days between Date 1 and Date 2: " + db);
     }
 }

@@ -1,3 +1,4 @@
+import java.util.Arrays;
 import java.util.Scanner;
 import java.text.DecimalFormat;
 public class Matrix {
@@ -19,7 +20,7 @@ public class Matrix {
     public Matrix inverse() {
         double d = determinant();
         if (d == 0) {
-            throw new ArithmeticException("Can`t build inverse matrix");
+            System.out.print("Can`t build inverse matrix");
         }
         double invdet = 1/d;
         return new Matrix(matrix[1][1] * invdet, -matrix[0][1] * invdet, -matrix[1][0] * invdet, matrix[0][0] * invdet);
@@ -64,6 +65,13 @@ public class Matrix {
         }
     }
 
+    @Override
+    public String toString() {
+        return "Matrix{" +
+                "matrix=" + Arrays.toString(matrix) +
+                '}';
+    }
+
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
         System.out.println("Enter the elements of the Matrix 1: ");
@@ -87,7 +95,7 @@ public class Matrix {
             }
         }
         System.out.println("Matrix 2:");
-        matrix2.print();
+        System.out.println(matrix2);
 
         System.out.println("Determinant of the Matrix 1: " + matrix1.determinant());
         System.out.println("Determinant of the Matrix 2: " + matrix2.determinant());
