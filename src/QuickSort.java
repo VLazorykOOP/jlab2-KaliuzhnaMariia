@@ -2,7 +2,11 @@ import java.util.Scanner;
 import java.util.Arrays;
 import java.util.Random;
 public class QuickSort {
-    //Function for generating random array
+    private int[] array;
+    //Constructor
+    public QuickSort(int[] array) {
+        this.array = array;
+    }
     private static int[] generateRandom(int n){
         int[] arr = new int[n];
         Random rnd = new Random();
@@ -11,15 +15,15 @@ public class QuickSort {
         }
         return arr;
     }
-    //Function for Quick Sorting
-    private static void quickSort(int[] arr, int begin, int end){
-        if(begin < end){
+    //Methods
+    public static void quickSort(int[] arr, int begin, int end){
+        if (begin < end) {
             int pivot = partition(arr, begin, end);
             quickSort(arr, begin, pivot-1);
             quickSort(arr, pivot+1, end);
         }
     }
-    private static int partition(int[] arr, int begin, int end){
+    public static int partition(int[] arr, int begin, int end){
         int pivot = arr[end];
         int i = begin - 1;
         for (int j = begin; j < end; j++){
@@ -42,6 +46,7 @@ public class QuickSort {
         int n = in.nextInt();
         int[] arr = generateRandom(n);
         System.out.println("Original array: " + Arrays.toString(arr));
+        QuickSort quickSort = new QuickSort(arr);
         quickSort(arr, 0, n-1);
         System.out.println("Sorted array: " + Arrays.toString(arr));
     }
