@@ -1,4 +1,3 @@
-import java.util.Scanner;
 import java.util.Arrays;
 import java.util.Random;
 public class QuickSort {
@@ -23,7 +22,7 @@ public class QuickSort {
             quickSort(pivot+1, end);
         }
     }
-    private static int partition(int[] arr, int begin, int end){
+    private int partition(int[] arr, int begin, int end){
         int pivot = arr[end];
         int i = begin - 1;
         for (int j = begin; j < end; j++){

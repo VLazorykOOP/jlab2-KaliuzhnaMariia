@@ -70,7 +70,6 @@ public class Main {
         Matrix matrix1 = new Matrix(matrix1d);
         System.out.println("Matrix 1:");
         System.out.println(matrix1);
-        matrix1.print();
 
         System.out.println("Enter the elements of the Matrix 2: ");
         double[][] matrix2d = new double[2][2];
@@ -82,25 +81,24 @@ public class Main {
         }
         Matrix matrix2 = new Matrix(matrix2d);
         System.out.println("Matrix 2:");
-        System.out.println(matrix2d);
-        matrix2.print();
+        System.out.println(matrix2);
 
         System.out.println("Determinant of the Matrix 1: " + matrix1.determinant());
         System.out.println("Determinant of the Matrix 2: " + matrix2.determinant());
 
         System.out.println("Inverse of Matrix1:");
-        matrix1.inverse().print();
+        System.out.println(matrix1.inverse());
 
         System.out.println("Matrix1 + Matrix2:");
-        matrix1.add(matrix2).print();
+        System.out.println(matrix1.add(matrix2));
 
         System.out.println("Matrix1 * Matrix2:");
-        matrix1.multiplyMatrix(matrix2).print();
+        System.out.println(matrix1.multiplyMatrix(matrix2));
 
         System.out.println("Matrix * number: ");
         System.out.print("Enter the number: ");
         double n = in.nextDouble();
-        matrix1.multiplyNumber(n).print();
+        System.out.println(matrix1.multiplyNumber(n));
     }
     public static void QuickSort(){
         Scanner in = new Scanner(System.in);
@@ -109,7 +107,6 @@ public class Main {
         int[] arr = QuickSort.generateRandom(n);
         System.out.println("Original array: " + Arrays.toString(arr));
         QuickSort quickSort = new QuickSort(arr);
-//        QuickSort.quickSort(arr, 0, n-1);
         System.out.println("Sorted array: " + Arrays.toString(quickSort.sort()));
     }
 }

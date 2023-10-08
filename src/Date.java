@@ -5,20 +5,20 @@ public class Date {
     private byte month;
     private byte day;
 //Constructors
-    public Date(String dates){
-        String[]parts = dates.split("\\.");
-        if(parts.length == 3){
-            this.year = Byte.parseByte(parts[0]);
-            this.month = Byte.parseByte(parts[1]);
-            this.day = Byte.parseByte(parts[2]);
-        }else{
-            System.out.println("Invalid date");
-        }
-    }
     public Date(int year, int month, int day){
         this.year = (byte) year;
         this.month = (byte) month;
         this.day = (byte) day;
+    }
+    public Date(String dates){
+        String[]parts = dates.split("\\.");
+        if(parts.length == 3){
+            this.year = (byte) Integer.parseInt(parts[0]);
+            this.month =(byte) Integer.parseInt(parts[1]);
+            this.day =(byte) Integer.parseInt(parts[2]);
+        }else{
+            System.out.println("Invalid date");
+        }
     }
     public Date(LocalDate ld){
         this(ld.getYear(), ld.getMonthValue(), ld.getDayOfMonth());

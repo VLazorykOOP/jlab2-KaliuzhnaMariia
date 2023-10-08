@@ -74,16 +74,6 @@ public class Matrix {
         return new Matrix(res);
     }
 
-    public void print() {
-        DecimalFormat df = new DecimalFormat("#.##");
-        for (int i = 0; i < 2; i++) {
-            for (int j = 0; j < 2; j++) {
-                System.out.print(df.format(matrix[i][j]) + " ");
-            }
-            System.out.println();
-        }
-    }
-
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
