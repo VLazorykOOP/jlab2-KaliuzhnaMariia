@@ -109,7 +109,7 @@ public class Main {
         int[] arr = QuickSort.generateRandom(n);
         System.out.println("Original array: " + Arrays.toString(arr));
         QuickSort quickSort = new QuickSort(arr);
-        QuickSort.quickSort(arr, 0, n-1);
-        System.out.println("Sorted array: " + Arrays.toString(arr));
+//        QuickSort.quickSort(arr, 0, n-1);
+        System.out.println("Sorted array: " + Arrays.toString(quickSort.sort()));
     }
 }

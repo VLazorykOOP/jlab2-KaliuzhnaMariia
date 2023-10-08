@@ -10,7 +10,7 @@ public class Matrix {
     }
 
     public Matrix(double[][] arr) {
-        matrix = new double[2][2];
+        this();
         for (int i = 0; i < 2; i++) {
             for (int j = 0; j < 2; j++) {
                 matrix[i][j] = arr[i][j];
@@ -86,8 +86,12 @@ public class Matrix {
 
     @Override
     public String toString() {
-        return "Matrix{" +
-                "matrix=" + Arrays.toString(matrix) +
-                '}';
+        StringBuilder sb = new StringBuilder();
+        sb.append("Matrix{matrix= ");
+        for (int i = 0; i < 2; i++) {
+            sb.append(Arrays.toString(matrix[i]));
+        }
+        sb.append("}");
+        return sb.toString();
     }
 }

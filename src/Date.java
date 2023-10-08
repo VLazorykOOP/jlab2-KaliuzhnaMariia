@@ -1,4 +1,3 @@
-import java.util.Scanner;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 public class Date {
@@ -9,7 +8,7 @@ public class Date {
     public Date(String dates){
         String[]parts = dates.split("\\.");
         if(parts.length == 3){
-           this.year = Byte.parseByte(parts[0]);
+            this.year = Byte.parseByte(parts[0]);
             this.month = Byte.parseByte(parts[1]);
             this.day = Byte.parseByte(parts[2]);
         }else{
@@ -22,9 +21,7 @@ public class Date {
         this.day = (byte) day;
     }
     public Date(LocalDate ld){
-        this.year = (byte) ld.getYear();
-        this.month = (byte) ld.getMonthValue();
-        this.day = (byte) ld.getDayOfMonth();
+        this(ld.getYear(), ld.getMonthValue(), ld.getDayOfMonth());
     }
 
 //Methods
@@ -56,44 +53,17 @@ public class Date {
 
     //Operations
     public Date addDays(int d){
-        LocalDate ld = toLocalDate().plusDays(d);
-        return new Date((byte) ld.getYear(), (byte) ld.getMonthValue(), (byte) ld.getDayOfMonth());
+        return new Date(toLocalDate().plusDays(d));
     }
     public Date minusDays(int d) {
-        LocalDate ld = toLocalDate().minusDays(d);
-        return new Date((byte) ld.getYear(), (byte) ld.getMonthValue(), (byte) ld.getDayOfMonth());
+        return new Date(toLocalDate().minusDays(d));
     }
     public boolean isLeap(Date date){
-        LocalDate ldate = date.toLocalDate();
-        if (ldate.isLeapYear()){
-            return true;
-        }
-        return false;
+        return date.toLocalDate().isLeapYear();
     }
-    public boolean isAfter(Date date1, Date date2){
-        LocalDate ldate1 = date1.toLocalDate();
-        LocalDate ldate2 = date2.toLocalDate();
-        if (ldate1.isAfter(ldate2)) {
-            return true;
-        }
-        return false;
-    }
-    public boolean isBefore(Date date1, Date date2){
-        LocalDate ldate1 = date1.toLocalDate();
-        LocalDate ldate2 = date2.toLocalDate();
-        if (ldate1.isBefore(ldate2)) {
-            return true;
-        }
-        return false;
-    }
-    public boolean isEqual(Date date1, Date date2){
-        LocalDate ldate1 = date1.toLocalDate();
-        LocalDate ldate2 = date2.toLocalDate();
-        if (ldate1.isEqual(ldate2)) {
-            return true;
-        }
-        return false;
-    }
+    public boolean isAfter(Date date1, Date date2){ return date1.toLocalDate().isAfter(date2.toLocalDate()); }
+    public boolean isBefore(Date date1, Date date2){ return date1.toLocalDate().isBefore(date2.toLocalDate()); }
+    public boolean isEqual(Date date1, Date date2){ return date1.toLocalDate().isEqual(date2.toLocalDate()); }
     public int daysBetween(Date date1, Date date2) {
         LocalDate ldate1 = date1.toLocalDate();
         LocalDate ldate2 = date2.toLocalDate();
