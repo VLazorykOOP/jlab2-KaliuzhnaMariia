@@ -17,25 +17,25 @@ public class QuickSort {
     //Methods
     private void quickSort(int begin, int end){
         if (begin < end) {
-            int pivot = partition(this.sortedArray, begin, end);
+            int pivot = partition(begin, end);
             quickSort(begin, pivot-1);
             quickSort(pivot+1, end);
         }
     }
-    private int partition(int[] arr, int begin, int end){
-        int pivot = arr[end];
+    private int partition(int begin, int end){
+        int pivot = this.sortedArray[end];
         int i = begin - 1;
         for (int j = begin; j < end; j++){
-            if(arr[j] < pivot){
+            if(this.sortedArray[j] < pivot){
                 i++;
-                int temp = arr[i];
-                arr[i] = arr[j];
-                arr[j] = temp;
+                int temp = this.sortedArray[i];
+                this.sortedArray[i] = this.sortedArray[j];
+                this.sortedArray[j] = temp;
             }
         }
-        int temp = arr[i + 1];
-        arr[i + 1] = arr[end];
-        arr[end] = temp;
+        int temp = this.sortedArray[i + 1];
+        this.sortedArray[i + 1] = this.sortedArray[end];
+        this.sortedArray[end] = temp;
         return i + 1;
     }
 
